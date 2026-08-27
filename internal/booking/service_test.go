@@ -9,7 +9,7 @@ import (
 )
 
 func TestConcurrentBooking_ExactlyOneWins(t *testing.T){
-	store := NewMemoryStore()
+	store := NewConcurrentStore()
 	svc := NewService(store)
 
 	const numGoroutines = 100_000 //100k users trying to book a seat at a time
@@ -18,8 +18,7 @@ func TestConcurrentBooking_ExactlyOneWins(t *testing.T){
 		successes atomic.Int64
 		failures atomic.Int64
 		wg sync.WaitGroup
-	)	
-
+	)	 
 	wg.Add(numGoroutines)
 
 	for i:= range numGoroutines{
