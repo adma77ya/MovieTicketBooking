@@ -2,6 +2,7 @@ package booking
 
 import (
 	"errors"
+	"time"
 )
 
 var (
@@ -14,6 +15,7 @@ type Booking struct{
 	SeatId string
 	UserId string
 	Status string
+	ExpiresAt time.Time
 }
 
 // here we do teh DI(dependency injection), we are going to have
